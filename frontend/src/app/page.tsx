@@ -1,8 +1,8 @@
 
 export default function Home() {
   return (
-    <main>
-      <h1 className="bg-dark text-primary">Test headline</h1>
+    <main className="h-screen w-screen bg-light-bg dark:bg-dark-bg">
+      <h1 className="text-light-typo dark:text-dark-typo">Test headline</h1>
     </main>
   )
 }
