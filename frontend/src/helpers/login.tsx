@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default async function handleLogin() {
+export default async function handleLogin(username: string, password: string) {
 // Request API.
 axios
   .post('http://localhost:1337/api/auth/local', {

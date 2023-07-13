@@ -4,17 +4,17 @@ import innovoicerLogo from "../../public/assets/icons/innovoicer-logo.png"
 import ButtonPrimary from "../components/ui/buttons/ButtonPrimary";
 import InputText from "../components/ui/forms/InputText";
 import handleLogin from "@/helpers/login";
-import { useState } from "react";
+import { useForm } from "react-hook-form";
 
-
-function handleSubmit(e: React.FormEvent) {
-  e.preventDefault();
-  handleLogin()
+type FormData = {
+  username: string,
+  password: string,
 }
 
 export default function Login() {
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const {register, setValue, handleSubmit, formState: { errors }, } = useForm<FormData>()
+
+  const onSubmit = handleSubmit((data) => handleLogin(data.username, data.password))
 
   return (
     <main className="h-screen w-screen grid place-content-center bg-light-bg dark:bg-dark-bg">
@@ -23,10 +23,12 @@ export default function Login() {
           <h1 className="text-light-typo dark:text-dark-typo text-3xl font-semibold">Innovoicer</h1>
           <Image src={innovoicerLogo} alt="Logo of Innovoicer app" width={50} height={50} className="ml-auto"/>
         </div>
-        <form action="" onSubmit={handleSubmit} className="bg-white dark:bg-secondary-bg py-8 px-12 rounded-lg">
+        <form onSubmit={onSubmit} className="bg-white dark:bg-secondary-bg py-8 px-12 rounded-lg">
           <h2 className="text-light-typo dark:text-dark-typo text-center text-2xl font-medium mb-4">Login</h2>
-          <InputText label='Username' />
-          <InputText label='Password' />
+          <label>Username</label>
+          <input type="email" required {...register("username")} />
+          <label>Password</label>
+          <input type="password" required {...register("password")} />
           <ButtonPrimary label='Login' />
         </form>
       </section>
