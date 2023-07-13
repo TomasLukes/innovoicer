@@ -17,6 +17,7 @@ module.exports = {
         // Background colors
         'light-bg': '#F8F8FB',
         'dark-bg': '#141625',
+        'secondary-bg': '#1E2139',
 
         // Typography colors
         'light-typo': '#0C0E16',
@@ -29,6 +30,9 @@ module.exports = {
         // Secondary colors
         'secondary': '#1E2139',
         'secondary-light': '#252945',
+
+        // Neutral colors
+        'neutral-500': '#DFE3FA',
 
         // Danger colors
         'danger': '#EC5757',
