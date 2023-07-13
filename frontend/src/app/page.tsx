@@ -1,9 +1,21 @@
+'use client'
 import Image from "next/image";
 import innovoicerLogo from "../../public/assets/icons/innovoicer-logo.png"
-import ButtonPrimary from "./components/ui/buttons/ButtonPrimary";
-import InputText from "./components/ui/forms/InputText";
+import ButtonPrimary from "../components/ui/buttons/ButtonPrimary";
+import InputText from "../components/ui/forms/InputText";
+import handleLogin from "@/helpers/login";
+import { useState } from "react";
 
-export default function Home() {
+
+function handleSubmit(e: React.FormEvent) {
+  e.preventDefault();
+  handleLogin()
+}
+
+export default function Login() {
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
+
   return (
     <main className="h-screen w-screen grid place-content-center bg-light-bg dark:bg-dark-bg">
       <section className="w-72">
@@ -11,7 +23,7 @@ export default function Home() {
           <h1 className="text-light-typo dark:text-dark-typo text-3xl font-semibold">Innovoicer</h1>
           <Image src={innovoicerLogo} alt="Logo of Innovoicer app" width={50} height={50} className="ml-auto"/>
         </div>
-        <form action="" className="bg-white dark:bg-secondary-bg py-8 px-12 rounded-lg">
+        <form action="" onSubmit={handleSubmit} className="bg-white dark:bg-secondary-bg py-8 px-12 rounded-lg">
           <h2 className="text-light-typo dark:text-dark-typo text-center text-2xl font-medium mb-4">Login</h2>
           <InputText label='Username' />
           <InputText label='Password' />
