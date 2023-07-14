@@ -5,6 +5,7 @@ import ButtonPrimary from "../components/ui/buttons/ButtonPrimary";
 import InputText from "../components/ui/forms/InputText";
 import handleLogin from "@/helpers/login";
 import { useForm } from "react-hook-form";
+import { useRouter } from "next/navigation";
 
 type FormData = {
   username: string,
@@ -12,9 +13,14 @@ type FormData = {
 }
 
 export default function Login() {
-  const {register, setValue, handleSubmit, formState: { errors }, } = useForm<FormData>()
+  const router = useRouter()
+  const {register, handleSubmit, formState: { errors }, } = useForm<FormData>()
 
-  const onSubmit = handleSubmit((data) => handleLogin(data.username, data.password))
+  const onSubmit = handleSubmit((data) => {
+    handleLogin(data.username, data.password);
+    if () {
+    router.push('/my-dashboard') }
+  })
 
   return (
     <main className="h-screen w-screen grid place-content-center bg-light-bg dark:bg-dark-bg">
